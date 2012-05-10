@@ -48,7 +48,8 @@ public static void main(String[] arguments)
            break;
            default:
            //Invalid command line arguments 
-           JOptionPane.showMessageDialog(null,String.format(
+           popup("Swtich(arguments.length) case defualt:)");
+               JOptionPane.showMessageDialog(null,String.format(
                    "Valid Arguments Are:%n"
                    + "\"%F\" \"%D\" \"%N\" \"%P\" \"%L\" \"%T\" \"%M\" \"%I\" \"%S\" \"%K\""
                    + "and%n"
@@ -59,6 +60,7 @@ public static void main(String[] arguments)
 }
 private static void sortTorrent()
 {
+    popup("sortTorrent() called");
     String label = torrent.getLabel();
     String prefixDirectory = config.getRootDirectory();
     String suffixDirectory = torrent.getTitle();
