@@ -12,7 +12,7 @@ public class Main {
 
 public static void main(String[] arguments)
 {  
-   config = new Config(new File("conf.txt"));
+   config = new Config(new File("Directory.ini"));
    switch (arguments.length)
    {
        case 0: //No command line arguments run configuration editor
