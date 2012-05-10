@@ -23,7 +23,7 @@ public static void main(String[] arguments)
            frame.setSize(300,500);
            frame.setVisible(true);
            break;
-       case 10://uTorrents complete parameter list act on torrent 
+        case 10://uTorrents complete parameter list act on torrent 
            torrent = new Torrent(arguments);
            switch(torrent.getState())
            {
@@ -45,9 +45,9 @@ public static void main(String[] arguments)
                    break;
                default:                   
            }
-           torrent.testTorrent();
            break;
-       default:  //Invalid command line arguments 
+           default:
+           //Invalid command line arguments 
            JOptionPane.showMessageDialog(null,String.format(
                    "Valid Arguments Are:%n"
                    + "\"%F\" \"%D\" \"%N\" \"%P\" \"%L\" \"%T\" \"%M\" \"%I\" \"%S\" \"%K\""
@@ -60,20 +60,33 @@ public static void main(String[] arguments)
 private static void sortTorrent()
 {
     String label = torrent.getLabel();
-    String rootDirectory = config.getRootDirectory();
+    String prefixDirectory = config.getRootDirectory();
+    String suffixDirectory = torrent.getTitle();
     String sourceDirectory = torrent.getDirectory();
     try
     {
-        if(label.equalsIgnoreCase("tv") || (label.equalsIgnoreCase("television")))FileUtils.copyDirectory(sourceDirectory, rootDirectory + config.getTvDirectory());
-        else if(label.equalsIgnoreCase("movies")|| label.equalsIgnoreCase("movie"))FileUtils.copyDirectory(sourceDirectory,rootDirectory + config.getMoviesDirectory());
-        else if((label.equalsIgnoreCase("game"))||(label.equalsIgnoreCase("games")))FileUtils.copyDirectory(sourceDirectory,rootDirectory + config.getGamesDirectory());
-        else if((label.equalsIgnoreCase("document"))||label.equalsIgnoreCase("documents"))FileUtils.copyDirectory(sourceDirectory,rootDirectory + config.getDocumentDirectory());
-        else if((label.equalsIgnoreCase("video"))||label.equalsIgnoreCase("videos"))FileUtils.copyDirectory(sourceDirectory,rootDirectory + config.getVideoDirectory());
-        else FileUtils.copyDirectory(sourceDirectory,rootDirectory + config.getFilesDirectory());
+        if(label.equalsIgnoreCase("tv") || 
+                (label.equalsIgnoreCase("television")))
+             FileUtils.copyDirectory(sourceDirectory, prefixDirectory + config.getTvDirectory()+ suffixDirectory);
+        else if(label.equalsIgnoreCase("movies") ||
+                label.equalsIgnoreCase("movie"))
+             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getMoviesDirectory()+ suffixDirectory);
+        else if((label.equalsIgnoreCase("game")) ||
+                (label.equalsIgnoreCase("games")))
+             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getGamesDirectory() + suffixDirectory);
+        else if((label.equalsIgnoreCase("document")) || 
+                label.equalsIgnoreCase("documents"))
+             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getDocumentDirectory() + suffixDirectory);
+        else if((label.equalsIgnoreCase("video")) ||
+                label.equalsIgnoreCase("videos"))
+             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getVideoDirectory() + suffixDirectory);
+        else if ((label.equalsIgnoreCase("music")) )
+             FileUtils.copyDirectory(sourceDirectory, prefixDirectory + config.getMusicDirectory()+ suffixDirectory);
+        else FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getFilesDirectory() + suffixDirectory);
     }
     catch (IOException e)
     {
-
+        popup(e.getMessage());
     }
 }
 private static void torrentIsNowState(Torrent torrent)
@@ -94,7 +107,10 @@ private static void displayCommandLineArgs(String[] arguments)
     }
    JOptionPane.showMessageDialog(null, message, "Argument Breakdown", JOptionPane.INFORMATION_MESSAGE);
 }
-
+private static void popup(String s)
+{
+    JOptionPane.showMessageDialog(null,String.format("%s",s), s ,JOptionPane.PLAIN_MESSAGE);
+}
 }
 
 

@@ -14,8 +14,7 @@ public static void copyDirectory(String sourceDirectory, String destinationDirec
         File destFolder = new File(destinationDirectory); 
     	//make sure source exists
     	if(!srcFolder.exists())
-        {
-           System.err.printf("%s does not exist", sourceDirectory);
+        {           
            throw new IOException(String.format("Copy failed: %s does not exist", sourceDirectory));
         }
         else
