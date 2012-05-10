@@ -1,7 +1,6 @@
 package uTorrentSorter;
 
 
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -47,18 +46,16 @@ public class ConfigManager extends JPanel {
     public ConfigManager()
     {
         config = new Config();
-        config.setConfigFile(new File("conf.txt"));        
-        tvTextField = new JTextField();
-        moviesTextField = new JTextField();
-        gamesTextField = new JTextField();
-        musicTextField = new JTextField();
-        documentTextField = new JTextField();
-        videoTextField = new JTextField();
-        filesTextField = new JTextField();
-        rootTextField = new JTextField();
+        config.setConfigFile(new File("conf.txt"));
+        initializeJTextFields(config);
         constructPanel();
     }
     public ConfigManager(Config c)
+    {
+        initializeJTextFields(c);
+        constructPanel();
+    }
+    private void initializeJTextFields(Config c)
     {
         config = c;
         rootTextField = new JTextField(config.getRootDirectory());
@@ -69,7 +66,6 @@ public class ConfigManager extends JPanel {
         documentTextField = new JTextField(config.getDocumentDirectory());
         videoTextField = new JTextField(config.getVideoDirectory());
         filesTextField = new JTextField(config.getFilesDirectory());
-        constructPanel();
     }
     private void constructPanel()
     {
