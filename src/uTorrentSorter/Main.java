@@ -28,42 +28,48 @@ public static void main(String[] arguments)
            switch(torrent.getState())
            {
                case 1:
+                   break;
                case 2:
+                   break;
                case 3:
+                   break;
                case 4:
+                   break;
                case 5:
                    //torrent is now seeding
                    sortTorrent();
+                   break;
                case 6:
+                   break;
                case 7:
+                   break;
                case 8:
+                   break;
                case 9:
+                   break;
                case 10:
+                   break;
                case 11:
+                   break;
                case 12:
+                   break;
                case 13:                    
                    break;
                default:                   
            }
            break;
-           default:
-           //Invalid command line arguments 
-           popup("Swtich(arguments.length) case defualt:)");
-               JOptionPane.showMessageDialog(null,String.format(
-                   "Valid Arguments Are:%n"
-                   + "\"%F\" \"%D\" \"%N\" \"%P\" \"%L\" \"%T\" \"%M\" \"%I\" \"%S\" \"%K\""
-                   + "and%n"
-                   + "none"));
-           break;
-           
+        default:
+            //Invalid command line arguments 
+               JOptionPane.showMessageDialog(null,String.format("Invalid Run Arguments"));
+            break;
    }
 }
 private static void sortTorrent()
 {
-    popup("sortTorrent() called");
+    
     String label = torrent.getLabel();
     String prefixDirectory = config.getRootDirectory();
-    String suffixDirectory = torrent.getTitle();
+    String suffixDirectory = torrent.getTitle() + "\\";
     String sourceDirectory = torrent.getDirectory();
     try
     {
@@ -81,7 +87,7 @@ private static void sortTorrent()
              FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getDocumentDirectory() + suffixDirectory);
         else if((label.equalsIgnoreCase("video")) ||
                 label.equalsIgnoreCase("videos"))
-             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getVideoDirectory() + suffixDirectory);
+             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getVideoDirectory() + suffixDirectory );
         else if ((label.equalsIgnoreCase("music")) )
              FileUtils.copyDirectory(sourceDirectory, prefixDirectory + config.getMusicDirectory()+ suffixDirectory);
         else FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getFilesDirectory() + suffixDirectory);
