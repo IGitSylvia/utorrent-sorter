@@ -27,7 +27,7 @@ public class ConfigManager extends JPanel {
     static JLabel musicLabel = new JLabel("Music Directory:");
     static JLabel documentLabel = new JLabel("Document Directory:"); 
     static JLabel videoLabel = new JLabel("Video Directory:");
-    static JLabel filesLabel = new JLabel("Unlabeld Directory");
+    static JLabel unlabeledLabel = new JLabel("Unlabeld Directory");
     
     static JButton saveButton = new JButton("Save");
     static JButton cancelButton = new JButton("Cancel");
@@ -41,7 +41,7 @@ public class ConfigManager extends JPanel {
     JTextField musicTextField;
     JTextField documentTextField; 
     JTextField videoTextField;
-    JTextField filesTextField;    
+    JTextField unlabeledTextField;    
     
     public ConfigManager()
     {
@@ -65,7 +65,7 @@ public class ConfigManager extends JPanel {
         musicTextField = new JTextField(config.getMusicDirectory());
         documentTextField = new JTextField(config.getDocumentDirectory());
         videoTextField = new JTextField(config.getVideoDirectory());
-        filesTextField = new JTextField(config.getFilesDirectory());
+        unlabeledTextField = new JTextField(config.getUnlabeledDirectory());
     }
     private void constructPanel()
     {
@@ -79,7 +79,7 @@ public class ConfigManager extends JPanel {
         musicTextField.addActionListener(listener);
         documentTextField.addActionListener(listener);
         videoTextField.addActionListener(listener);
-        filesTextField.addActionListener(listener);
+        unlabeledTextField.addActionListener(listener);
         saveButton.addActionListener(listener);
         cancelButton.addActionListener(listener);
                 
@@ -90,7 +90,7 @@ public class ConfigManager extends JPanel {
         add(musicLabel); add(musicTextField);
         add(documentLabel); add(documentTextField);
         add(videoLabel); add(videoTextField);
-        add(filesLabel); add(filesTextField);
+        add(unlabeledLabel); add(unlabeledTextField);
         add(saveButton); add(cancelButton);
         
     }
@@ -102,7 +102,7 @@ public class ConfigManager extends JPanel {
             
             config.setTvDirectory(tvTextField.getText());
             config.setDocumentDirectory(documentTextField.getText());
-            config.setFilesDirectory(filesTextField.getText());
+            config.setUnlabeledDirectory(unlabeledTextField.getText());
             config.setGamesDirectory(gamesTextField.getText());
             config.setMoviesDirectory(moviesTextField.getText());
             config.setMusicDirectory(musicTextField.getText());

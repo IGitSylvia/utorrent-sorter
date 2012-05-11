@@ -1,6 +1,7 @@
 package uTorrentSorter;
 
 import java.io.*;
+
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -66,35 +67,50 @@ public static void main(String[] arguments)
 }
 private static void sortTorrent()
 {
-    
-    String label = torrent.getLabel();
-    String prefixDirectory = config.getRootDirectory();
-    String suffixDirectory = torrent.getTitle() + "\\";
-    String sourceDirectory = torrent.getDirectory();
-    try
-    {
+        String label = torrent.getLabel();
         if(label.equalsIgnoreCase("tv") || 
                 (label.equalsIgnoreCase("television")))
-             FileUtils.copyDirectory(sourceDirectory, prefixDirectory + config.getTvDirectory()+ suffixDirectory);
+            moveTorrent(config.getTvDirectory());
         else if(label.equalsIgnoreCase("movies") ||
                 label.equalsIgnoreCase("movie"))
-             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getMoviesDirectory()+ suffixDirectory);
+            moveTorrent(config.getMoviesDirectory());
         else if((label.equalsIgnoreCase("game")) ||
                 (label.equalsIgnoreCase("games")))
-             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getGamesDirectory() + suffixDirectory);
+            moveTorrent(config.getGamesDirectory());
         else if((label.equalsIgnoreCase("document")) || 
                 label.equalsIgnoreCase("documents"))
-             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getDocumentDirectory() + suffixDirectory);
+             moveTorrent(config.getDocumentDirectory());
         else if((label.equalsIgnoreCase("video")) ||
                 label.equalsIgnoreCase("videos"))
-             FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getVideoDirectory() + suffixDirectory );
+             moveTorrent(config.getVideoDirectory());
         else if ((label.equalsIgnoreCase("music")) )
-             FileUtils.copyDirectory(sourceDirectory, prefixDirectory + config.getMusicDirectory()+ suffixDirectory);
-        else FileUtils.copyDirectory(sourceDirectory,prefixDirectory + config.getFilesDirectory() + suffixDirectory);
-    }
-    catch (IOException e)
+             moveTorrent(config.getMusicDirectory());
+        else moveTorrent(config.getUnlabeledDirectory());
+    
+}
+private static void moveTorrent(String sortedDirectory)
+{
+    try
     {
-        popup(e.getMessage());
+        String source = torrent.getDirectory();
+        String destination = config.getRootDirectory() + sortedDirectory;
+        
+        if((torrent.getKind()).equalsIgnoreCase("multi"))
+        {
+            destination += torrent.getTitle() + "\\";
+            FileUtils.copyDirectory(source, destination);
+        }
+        else
+        {
+            source += "\\" + torrent.getName();
+            destination += torrent.getName();
+            FileUtils.copyFile(source, destination);
+        }
+        
+    }
+    catch(Exception e)
+    {
+        popup(e.toString());
     }
 }
 private static void torrentIsNowState(Torrent torrent)

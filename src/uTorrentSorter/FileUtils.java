@@ -73,5 +73,22 @@ private static void recursiveCopyDirectory(File src, File dest) throws IOExcepti
     	        System.out.println("File copied from " + src + " to " + dest);
                 }
 }
-    
+public static void copyFile(String source, String destination) throws IOException
+{
+       		InputStream in = new FileInputStream(new File(source));
+    	        OutputStream out = new FileOutputStream(new File(destination));
+ 
+    	        byte[] buffer = new byte[1024];
+ 
+    	        int length;
+    	        //copy the file content in bytes 
+    	        while ((length = in.read(buffer)) > 0)
+                {
+    	    	   out.write(buffer, 0, length);
+    	        }
+ 
+    	        in.close();
+    	        out.close();
+    	        System.out.println("File copied from " + source + " to " + destination);
+}
 }

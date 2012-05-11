@@ -29,7 +29,7 @@ public class Config{
     private String musicDirectory;
     private String documentDirectory; 
     private String videoDirectory;
-    private String filesDirectory;//failsafe will catch all unknown filetypes
+    private String unlabeledDirectory;//failsafe will catch all unknown filetypes
     
     private String rootDirectory;
     
@@ -41,7 +41,7 @@ public class Config{
         musicDirectory = new String();
         documentDirectory = new String();
         videoDirectory = new String();
-        filesDirectory = new String();
+        unlabeledDirectory = new String();
         rootDirectory = new String();
         configFile = null;
     }    
@@ -93,7 +93,7 @@ public class Config{
                     musicDirectory,
                     documentDirectory,
                     videoDirectory,
-                    filesDirectory));
+                    unlabeledDirectory));
             writer.close();
             success = true;
         }
@@ -119,7 +119,7 @@ public class Config{
            musicDirectory = reader.next();
            documentDirectory = reader.next();
            videoDirectory = reader.next();
-           filesDirectory = reader.next();
+           unlabeledDirectory = reader.next();
            reader.close();
            success = true;
         }
@@ -137,7 +137,7 @@ public class Config{
         musicDirectory = new String();
         documentDirectory = new String();
         videoDirectory = new String();
-        filesDirectory = new String();
+        unlabeledDirectory = new String();
         configFile = null;        
     }
 
@@ -157,13 +157,13 @@ public class Config{
     {
         this.moviesDirectory = moviesDirectory;
     }
-    public String getFilesDirectory()
+    public String getUnlabeledDirectory()
     {
-        return filesDirectory;
+        return unlabeledDirectory;
     }
-    public void setFilesDirectory(String filesDirectory)
+    public void setUnlabeledDirectory(String unlabeledDireactory)
     {
-        this.filesDirectory = filesDirectory;
+        this.unlabeledDirectory = unlabeledDireactory;
     }
     public File getConfigFile()
     {
