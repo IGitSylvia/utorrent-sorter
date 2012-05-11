@@ -37,8 +37,7 @@ private static void recursiveCopyDirectory(File src, File dest) throws IOExcepti
     		if(!dest.exists())
                 {
     		   dest.mkdir();
-    		   System.out.println("Directory copied from " 
-                              + src + "  to " + dest);
+    		   System.out.println("Directory copied from "+src+"  to "+dest);
     		}
  
     		//list all the directory contents
@@ -58,7 +57,7 @@ private static void recursiveCopyDirectory(File src, File dest) throws IOExcepti
     		//if file, then copy it
     		//Use bytes stream to support all file types
     		InputStream in = new FileInputStream(src);
-    	        OutputStream out = new FileOutputStream(dest); 
+    	        OutputStream out = new FileOutputStream(dest);
  
     	        byte[] buffer = new byte[1024];
  
@@ -73,8 +72,6 @@ private static void recursiveCopyDirectory(File src, File dest) throws IOExcepti
     	        out.close();
     	        System.out.println("File copied from " + src + " to " + dest);
                 }
-                
- 
 }
     
 }

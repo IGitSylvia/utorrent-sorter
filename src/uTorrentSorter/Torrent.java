@@ -1,7 +1,6 @@
 package uTorrentSorter;
 
 import java.security.InvalidParameterException;
-import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 
